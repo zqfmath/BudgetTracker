@@ -1,0 +1,9 @@
+D:\AntraEvaluation\AntraEvaluation.Core\bin\Debug\netstandard2.0\AntraEvaluation.Core.deps.json
+D:\AntraEvaluation\AntraEvaluation.Core\bin\Debug\netstandard2.0\AntraEvaluation.Core.dll
+D:\AntraEvaluation\AntraEvaluation.Core\bin\Debug\netstandard2.0\AntraEvaluation.Core.pdb
+D:\AntraEvaluation\AntraEvaluation.Core\obj\Debug\netstandard2.0\AntraEvaluation.Core.csprojAssemblyReference.cache
+D:\AntraEvaluation\AntraEvaluation.Core\obj\Debug\netstandard2.0\AntraEvaluation.Core.AssemblyInfoInputs.cache
+D:\AntraEvaluation\AntraEvaluation.Core\obj\Debug\netstandard2.0\AntraEvaluation.Core.AssemblyInfo.cs
+D:\AntraEvaluation\AntraEvaluation.Core\obj\Debug\netstandard2.0\AntraEvaluation.Core.csproj.CoreCompileInputs.cache
+D:\AntraEvaluation\AntraEvaluation.Core\obj\Debug\netstandard2.0\AntraEvaluation.Core.dll
+D:\AntraEvaluation\AntraEvaluation.Core\obj\Debug\netstandard2.0\AntraEvaluation.Core.pdb

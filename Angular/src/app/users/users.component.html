@@ -1,0 +1,155 @@
+<ng-template #updateContent let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">User Update</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="updateUserForm">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <div class="input-group">
+            <input id="email" class="form-control" formControlName="email" placeholder="XXX@XXX.com" name="email" >
+            <div class="input-group">
+                <label for="password">Password</label>
+            </div>
+            <div class="input-group">
+                <input id="password" class="form-control" formControlName="password" placeholder="XXXXX" name="password">
+            </div>
+            <div class="input-group">
+                <label for="fullname">Fullname</label>
+            </div>
+            <div class="input-group">
+                <input id="fullname" class="form-control" formControlName="fullname" placeholder="XXXXX" name="fullname">
+            </div>
+            <div class="input-group">
+                <label for="joinedOn">joinedOn</label>
+            </div>
+            <div class="input-group">
+                <input id="joinedOn" class="form-control" formControlName="joinedOn" placeholder="yyyy-mm-dd" name="joinedOn" ngbDatepicker #dp="ngbDatepicker">
+            </div>
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button">Select</button>
+              </div>
+            
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click');onSubmitUpdate()">Save</button>
+    </div>
+  </ng-template>
+
+  
+
+
+
+
+  <ng-template #addContent let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">User Add</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="addUserForm">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <div class="input-group">
+            <input id="email" class="form-control" formControlName="email" placeholder="XXX@XXX.com" name="email" >
+            <div class="input-group">
+                <label for="password">Password</label>
+            </div>
+            <div class="input-group">
+                <input id="password" class="form-control" formControlName="password" placeholder="XXXXX" name="password">
+            </div>
+            <div class="input-group">
+                <label for="fullname">Fullname</label>
+            </div>
+            <div class="input-group">
+                <input id="fullname" class="form-control" formControlName="fullname" placeholder="XXXXX" name="fullname">
+            </div>
+            <div class="input-group">
+                <label for="joinedOn">joinedOn</label>
+            </div>
+            <div class="input-group">
+                <input id="joinedOn" class="form-control"  formControlName="joinedOn" placeholder="yyyy-mm-dd" name="joinedOn" ngbDatepicker #dp="ngbDatepicker">
+            </div>
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button">Select</button>
+              </div>
+            
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click');onSubmitAdd()">Add</button>
+    </div>
+  </ng-template>
+
+
+
+
+
+<h1>Users</h1>
+
+<p>
+    The users are shown in the follow table. You may use Update and Delete buttons to update and delete them. When you click on them, modals will pop up. If there are format's problem or the Email has been used, then error information will be given. 
+    
+    Remember if you delete an user, then all the relevant income and expenditure information will be deleted too! 
+</p>  
+    
+<p>
+     You can also use <button mat-raised-button color="primary" (click)="openAdd(addContent)">Add</button> to add users.
+</p>
+
+<div>
+<table mat-table [dataSource]="users">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+  
+    <!-- Position Column -->
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef> Email </th>
+      <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+    </ng-container>
+  
+    <!-- Name Column -->
+    <ng-container matColumnDef="password">
+      <th mat-header-cell *matHeaderCellDef> Password </th>
+      <td mat-cell *matCellDef="let element"> {{element.password}} </td>
+    </ng-container>
+  
+    <!-- Weight Column -->
+    <ng-container matColumnDef="fullname">
+      <th mat-header-cell *matHeaderCellDef> Fullname </th>
+      <td mat-cell *matCellDef="let element"> {{element.fullname}} </td>
+    </ng-container>
+  
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="joinedOn">
+      <th mat-header-cell *matHeaderCellDef> JoinedOn </th>
+      <td mat-cell *matCellDef="let element"> {{element.joinedOn}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="update">
+        <th mat-header-cell *matHeaderCellDef> Update </th>
+        <td mat-cell *matCellDef="let element"> <button mat-raised-button color="accent" (click)="openUpdate(updateContent,element.id)">Update</button> </td>
+      </ng-container>
+
+      <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef> Delete </th>
+        <td mat-cell *matCellDef="let element">  <button mat-raised-button color="warn" (click)="delete(element.id)">Delete</button></td>
+      </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+ 
+  </table>
+  
+</div>

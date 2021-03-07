@@ -1,0 +1,174 @@
+<ng-template #updateContent let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Expenditure Update</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="updateExpenditureForm">
+        <div class="form-group">
+          <label for="userId">UserId</label>
+          <div class="input-group">
+            <input id="userId" class="form-control" formControlName="userId" placeholder="XXX" name="userId" >
+            <div class="input-group">
+                <label for="amount">Amount</label>
+            </div>
+            <div class="input-group">
+                <input id="amount" class="form-control" formControlName="amount" placeholder="XXX.XX" name="amount">
+            </div>
+            <div class="input-group">
+                <label for="desription">Desription</label>
+            </div>
+            <div class="input-group">
+                <input id="desription" class="form-control" formControlName="desription" placeholder="XXXXX" name="desription">
+            </div>
+            <div class="input-group">
+                <label for="expDate">ExpDate</label>
+            </div>
+            <div class="input-group">
+                <input id="expDate" class="form-control" formControlName="expDate" placeholder="yyyy-mm-dd" name="expDate" ngbDatepicker #dp="ngbDatepicker">
+            </div>
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button">Select</button>
+              </div>
+
+              <div class="input-group">
+                <label for="remarks">Remarks</label>
+            </div>
+            <div class="input-group">
+                <input id="remarks" class="form-control" formControlName="remarks" placeholder="XXXXX" name="remarks">
+            </div>
+            
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click');onSubmitUpdate()">Save</button>
+    </div>
+  </ng-template>
+
+  
+
+
+
+
+  <ng-template #addContent let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Expenditure Add</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="addExpenditureForm">
+        <div class="form-group">
+            <label for="userId">UserId</label>
+            <div class="input-group">
+              <input id="userId" class="form-control" formControlName="userId" placeholder="XXX" name="userId" >
+              <div class="input-group">
+                  <label for="amount">Amount</label>
+              </div>
+              <div class="input-group">
+                  <input id="amount" class="form-control" formControlName="amount" placeholder="XXX.XX" name="amount">
+              </div>
+              <div class="input-group">
+                  <label for="desription">Desription</label>
+              </div>
+              <div class="input-group">
+                  <input id="desription" class="form-control" formControlName="desription" placeholder="XXXXX" name="desription">
+              </div>
+              <div class="input-group">
+                  <label for="expDate">ExpDate</label>
+              </div>
+              <div class="input-group">
+                  <input id="expDate" class="form-control" formControlName="expDate" placeholder="yyyy-mm-dd" name="expDate" ngbDatepicker #dp="ngbDatepicker">
+              </div>
+              <div class="input-group-append">
+                  <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button">Select</button>
+                </div>
+  
+                <div class="input-group">
+                  <label for="remarks">Remarks</label>
+              </div>
+              <div class="input-group">
+                  <input id="remarks" class="form-control" formControlName="remarks" placeholder="XXXXX" name="remarks">
+              </div>
+              
+            </div>
+          </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click');onSubmitAdd()">Add</button>
+    </div>
+  </ng-template>
+
+
+
+
+
+<h1>Expenditures</h1>
+
+<p>
+    The expenditures are shown in the follow table. You may use Update and Delete buttons to update and delete them. When you click on them, modals will pop up. If there are format's problem, then error information will be given. 
+    
+    Remember if you want to add an expenditure, then the relevant user should be added into the database first!  
+</p>  
+    
+<p>
+     You can also use <button mat-raised-button color="primary" (click)="openAdd(addContent)">Add</button> to add expenditures.
+</p>
+
+<div>
+<table mat-table [dataSource]="expenditures">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+  
+    <!-- Position Column -->
+    <ng-container matColumnDef="userId">
+      <th mat-header-cell *matHeaderCellDef> UserId </th>
+      <td mat-cell *matCellDef="let element"> {{element.userId}} </td>
+    </ng-container>
+  
+    <!-- Name Column -->
+    <ng-container matColumnDef="amount">
+      <th mat-header-cell *matHeaderCellDef> Amount </th>
+      <td mat-cell *matCellDef="let element"> {{element.amount}} </td>
+    </ng-container>
+  
+    <!-- Weight Column -->
+    <ng-container matColumnDef="desription">
+      <th mat-header-cell *matHeaderCellDef> Desription </th>
+      <td mat-cell *matCellDef="let element"> {{element.desription}} </td>
+    </ng-container>
+  
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="expDate">
+      <th mat-header-cell *matHeaderCellDef> ExpDate </th>
+      <td mat-cell *matCellDef="let element"> {{element.expDate}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="remarks">
+        <th mat-header-cell *matHeaderCellDef> Remarks </th>
+        <td mat-cell *matCellDef="let element"> {{element.remarks}} </td>
+      </ng-container>
+
+    <ng-container matColumnDef="update">
+        <th mat-header-cell *matHeaderCellDef> Update </th>
+        <td mat-cell *matCellDef="let element"> <button mat-raised-button color="accent" (click)="openUpdate(updateContent,element.id)">Update</button> </td>
+      </ng-container>
+
+      <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef> Delete </th>
+        <td mat-cell *matCellDef="let element">  <button mat-raised-button color="warn" (click)="delete(element.id)">Delete</button></td>
+      </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+ 
+  </table>
+  
+</div>
